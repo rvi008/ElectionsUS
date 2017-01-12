@@ -1,16 +1,54 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+	#txt{
+		display : block;
+		margin-left: auto;
+		font-size:20px;
+		
+	}
+	h1{
+		text-align: center;
+		text-decoration: bold;
+	}
+	header {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#myProgress {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	height: 60px;
+	background-color: grey;
+	}
+	#myBar {
+	position: absolute;
+	width: 1%;
+	height: 100%;
+	background-color: blue;
+	}
+	svg
+	{
+	display: block;
+	margin: auto;
+	margin-top:40px;
+	}
 	.state{
+		position: relative;
+		margin-left: auto;
+		margin-right: auto,
 		fill: none;
-		stroke: #a9a9a9;
+		stroke: rgb(255,255,255);
 		stroke-width: 1;
 	}
 	.state:hover{
 		fill-opacity:0.5;
 	}
 	#tooltip {   
-		position: absolute;           
+		position: absolute;
+		left : 200px;           
 		text-align: center;
 		padding: 20px;             
 		margin: 10px;
@@ -20,16 +58,11 @@
 		border-radius: 2px;           
 		pointer-events: none;         
 	}
-	#tooltip h4{
-		margin:0;
-		font-size:14px;
-	}
 	#tooltip{
 		background:rgba(0,0,0,0.9);
 		border:1px solid grey;
 		border-radius:5px;
 		font-size:12px;
-		width:auto;
 		padding:4px;
 		color:white;
 		opacity:0;
@@ -51,12 +84,16 @@
 <header>
 <h1> 2016 Presidential Election Results</h1>
 </header>
-<body>
-
+<body onload="startTime()">
+<div id="txt"></div>
+<div id="myProgress">
+  <div id="myBar"></div>
+</div>
 <div id="tooltip"></div><!-- div to hold tooltip. -->
 <svg width="960" height="600" id="statesvg"></svg> <!-- svg to hold the map. -->
 <script src="uStates.js"></script> <!-- creates uStates. -->
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="clock.js"></script>
 <script>
 
 	function segColor(c){ return {
@@ -75,7 +112,7 @@
 	}
 	
 	var sampleData ={};	/* Sample random data. */	
-	var myVar = setInterval(updateData,5)
+	var myVar = setInterval(updateData,10)
 	function updateData() {	
 	d3.json("donneesVotes2.json", function(error, data) {
 	d3.select("#statesvg").remove()
