@@ -63,3 +63,36 @@ while(1) :
     time.sleep(5)
 
 
+
+#######################
+	###########
+########################
+# On crée un deuxième json qui aggrège les résultats à l'instant t au niveau national
+# MODIFIER UTILISER DIRECTEMENT LE DICO SI POSSIBLE
+
+data = json.load(open("donneesVotes2.json"))
+# Import du nombre de grands electeurs par état 
+base_elec = pd.read_csv("state.csv")
+
+result = pd.DataFrame(columns=["name","vote"])
+result = result.append({"name":"Clinton","vote":0}, ignore_index=True)
+result  = result.append({"name":"Trump","vote":0}, ignore_index=True)			
+
+for state in dicoStates.values():
+
+	try :
+		vote_clinton = data[state]["Clinton"]
+		vote_trump = data[state]["Trump"]
+
+		vote_electeur = base_elec.loc[base_elec["State"]==state,"nb_elector"].values
+
+		if vote_clinton > vote_trump :
+			
+			result.loc[result["name"]=="Clinton", "vote"] +=  vote_electeur[0] 	
+		else :
+			result.loc[result["name"]=="Trump", "vote"] += vote_electeur[0]
+
+	except KeyError :
+		continue
+
+result.to_json("test.json", orient="index")
