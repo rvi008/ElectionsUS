@@ -1,8 +1,1 @@
-[
- {"name":"Trump",
-  "vote":232
- },
- {"name":"Clinton",
-  "vote":306
- }
-]
+{"0":{"name":"Clinton","vote":233.0},"1":{"name":"Trump","vote":305.0}}

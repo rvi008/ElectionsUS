@@ -48,6 +48,7 @@ setInterval("update_trackdata()", 2000);
 function update_trackdata() {
             $.getJSON("jsonOne.json", function(data) {
 
+            	console.log(data)
                 var clinton = regular_vote(data[0]["vote"] )
                 var trump = regular_vote(data[1]["vote"] )
 
