@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+  <head>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+        <style type="text/css" src="gauge.css">
+        .chart-gauge
+      {
+        width: 400px;
+        margin: 100px auto  
+       } 
+      .chart-first
+      {
+        fill: #3366ff;
+      }
+            .chart-third
+            {
+                fill: #ff0000;
+            }
+    
+      .needle, .needle-center
+      {
+        fill: #000000;
+      }
+            .text {
+                color: #ff6666;
+                font-size: 16px;
+            }
+            
+
+      svg {
+        font: 10px sans-serif;
+      }
+            
+
+    </style>
+
+  </head>
+  <body>
+       
+            
+        <div class="chart-gauge"></div>
+
+                
+     
+    <script type="text/javascript" src="main.js"></script>
+    <script language="JavaScript">
+    setInterval("update_trackdata()", 2000);
+     
+
+
+  function update_trackdata() {
+              $.getJSON("jsonTwo.json", function(data) {
+
+                  console.log(data[0])
+                  var trump = data[1]["percent"] 
+                  //var clinton = data[0]["percent"]
+                  console.log(trump);
+                  needle.moveTo(trump);
+
+
+              });
+             
+      }
+
+
+    </script>
+
+  </body>
+
+</html>
