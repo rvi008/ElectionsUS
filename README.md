@@ -7,7 +7,7 @@ During the simulation, we have to handle a fault of the database.</p>
 <p text-align="center">The architecture chosen is the following</p>
 <ul>
 <li>An AWS cluster of 5 micro instances</li>
-<li>2 instances are NAT (a secondary and a primary) which host the software and http site</p>
+<li>2 instances are NAT (a secondary and a primary) which host the software and http site</li>
 <li>3 instances are MongoDB replica sets</li>
 </ul>
 
