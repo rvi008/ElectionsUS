@@ -44,7 +44,7 @@ def update_simulation(df, etat=None, gagnant=1):
     B = 100
     dem = 0
     for i in range(0, B):
-        if np.sum(df['nb_elector'][np.random.rand(51) < df['proba_dem']]) > 270:
+        if np.sum(df['nb_elector'][np.random.rand(51) < df['proba_dem']]) >= 270:
             dem += 1
 
     result = dem /float(B)
@@ -62,7 +62,7 @@ def reconnection():
            continue
   return c 
 
-df_proba = load_data(p=0.6)
+df_proba = pd.read_csv("state.csv", sep=";")
 list_proba_win = list()
 list_timestamp = list()
 
